@@ -25,6 +25,7 @@ body{
   border-bottom:4px solid #ffd300;
   z-index:2;
 }
+
 .nav-list{
   display:flex;
   gap:20px;
@@ -197,14 +198,14 @@ footer{
   .nav-list{
     gap:10px;
   }
-  .nav-list a {
+  .nav-list a{
     font-size:12px;
     padding:8px;
   }
-  .intro h1 {
+  .intro h1{
     font-size:22px;
   }
-  .intro p {
+  .intro p{
     font-size:16px;
   }
 }
