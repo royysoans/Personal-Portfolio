@@ -67,7 +67,7 @@ section{
   animation:blink 1s steps(2,start) infinite;
 }
 @keyframes blink {
-  50% { opacity: 0; }
+  50% {opacity: 0;}
 }
 
 .intro p {
@@ -105,7 +105,6 @@ h2{
   width:20px;
   height:20px;
   margin-right:10px;
-  vertical-align:middle;
 }
 
 .progress-bar{
@@ -120,7 +119,6 @@ h2{
 .progress{
   height:100%;
   background:linear-gradient(90deg, #FF3131, #FFD300);
-  transition:width 1s ease;
 }
 
 .percent{
@@ -169,7 +167,7 @@ h2{
   transform:scale(1.03);
 }
 
-.skill:hover, .project:hover {
+.skill:hover,.project:hover {
   transform: translateY(-6px);
   box-shadow: 0 0 12px rgba(255,211,0,0.18), 0 0 24px rgba(255,49,49,0.08);
 }
@@ -217,6 +215,7 @@ footer{
     grid-template-columns:1fr;
   }
 }
+
 ::-webkit-scrollbar{
     width:12px;
 }
