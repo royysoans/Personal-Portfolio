@@ -4,10 +4,6 @@
   padding:0;
 }
 
-html{
-  scroll-behavior: smooth;
-}
-
 body{
   font-family:'Roboto',sans-serif;
   background:linear-gradient(180deg, #0b0012, #001a3a);
@@ -220,4 +216,17 @@ footer{
   .skills-container{
     grid-template-columns:1fr;
   }
+}
+::-webkit-scrollbar{
+    width:12px;
+}
+::-webkit-scrollbar-track{
+    background:#001a3a;
+}
+::-webkit-scrollbar-thumb{
+    background-color:#ffd300;
+    border-radius: 15px;
+}
+::-webkit-scrollbar-thumb:hover{
+    background-color:#FF3131;
 }
