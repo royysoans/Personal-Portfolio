@@ -6,10 +6,7 @@ import About from './components/About'
 import Skills from './components/Skills'
 import Projects from './components/Projects'
 import Experience from './components/Experience'
-import Education from './components/Education'
-import CompetitiveProgramming from './components/CompetitiveProgramming'
 import Resume from './components/Resume'
-import Contact from './components/Contact'
 import Footer from './components/Footer'
 
 export default function App() {
@@ -38,10 +35,7 @@ export default function App() {
         <Skills />
         <Projects />
         <Experience />
-        <Education />
-        <CompetitiveProgramming />
         <Resume />
-        <Contact />
       </main>
 
       <Footer />
