@@ -44,7 +44,7 @@ export function SectionLabel({ children }: { children: ReactNode }) {
   return (
     <motion.p
       variants={itemVariants}
-      className="section-label"
+      className="section-label text-center"
     >
       {children}
     </motion.p>
@@ -55,7 +55,7 @@ export function SectionTitle({ children }: { children: ReactNode }) {
   return (
     <motion.h2
       variants={itemVariants}
-      className="text-3xl md:text-4xl font-bold text-[#EBEBEB] mb-5 leading-tight"
+      className="text-3xl md:text-4xl font-bold text-[#EBEBEB] mb-5 leading-tight text-center"
       style={{ letterSpacing: '-0.025em' }}
     >
       {children}
@@ -67,7 +67,7 @@ export function SectionSubtitle({ children }: { children: ReactNode }) {
   return (
     <motion.p
       variants={itemVariants}
-      className="text-[#888888] text-base md:text-lg max-w-2xl leading-relaxed"
+      className="text-[#888888] text-base md:text-lg max-w-2xl leading-relaxed text-center mx-auto"
     >
       {children}
     </motion.p>

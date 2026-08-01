@@ -7,7 +7,6 @@ export interface Project {
   github?: string;
   demo?: string;
   image?: string;
-  /** Gradient fallback if image is loading or missing */
   gradient: string;
   featured?: boolean;
 }
@@ -19,6 +18,7 @@ export const projects: Project[] = [
     description: 'Gamified learning platform across 5 themed regions with subject-based quiz progression, Google Gemini API adaptive difficulty generation, JWT auth, and real-time Supabase leaderboards.',
     tech: ['React', 'TypeScript', 'Supabase', 'TailwindCSS', 'Gemini API', 'Vite'],
     github: 'https://github.com/royysoans/Pokelearn',
+    demo: 'https://pokelearn-rsnp.vercel.app',
     image: '/projects/pokelearn.png',
     gradient: 'from-blue-500 via-cyan-500 to-teal-500',
     featured: true,
@@ -29,7 +29,7 @@ export const projects: Project[] = [
     description: 'AI-powered color palette generator supporting natural language prompts and image uploads with WCAG AA/AAA contrast ratio validation and one-click CSS design token export.',
     tech: ['React', 'TypeScript', 'TailwindCSS', 'Groq API', 'Vite'],
     github: 'https://github.com/royysoans/ChromaGen-',
-    demo: 'https://chroma-gen-virid.vercel.app/',
+    demo: 'https://chroma-gen-iota.vercel.app',
     image: '/projects/ChromaGen.png',
     gradient: 'from-pink-500 via-purple-500 to-blue-500',
     featured: true,
@@ -49,7 +49,8 @@ export const projects: Project[] = [
     title: 'CampusConnect',
     description: 'Campus networking & community platform for college students featuring discussion threads, real-time event updates, peer collaboration, and student project showcases.',
     tech: ['React', 'TypeScript', 'Supabase', 'TailwindCSS', 'Node.js'],
-    github: 'https://github.com/royysoans',
+    github: 'https://github.com/royysoans/CampusConnect',
+    demo: 'https://campus-connect-pi-eight.vercel.app',
     image: '/projects/CampusConnect.png',
     gradient: 'from-indigo-500 via-purple-500 to-pink-500',
     featured: false,
@@ -60,6 +61,7 @@ export const projects: Project[] = [
     description: 'Interactive browser network routing puzzle game built in Phaser 3 inspired by real networking concepts like VPN tunnels, firewalls, and packet drop mechanics with custom scoring.',
     tech: ['Phaser 3', 'JavaScript', 'Vite'],
     github: 'https://github.com/royysoans/Packet-Runner',
+    demo: 'https://packet-runner.vercel.app',
     image: '/projects/PacketRunner.png',
     gradient: 'from-green-500 via-emerald-500 to-cyan-500',
     featured: false,
