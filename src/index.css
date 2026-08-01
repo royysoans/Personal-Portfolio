@@ -1,0 +1,200 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-bg:           #090909;
+  --color-surface:      #111111;
+  --color-border:       rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(255, 255, 255, 0.16);
+  --color-accent:       #4DA8DA;
+  --color-accent-dim:   rgba(77, 168, 218, 0.12);
+  --color-text-primary: #EBEBEB;
+  --color-text-muted:   #888888;
+  --color-text-faint:   #444444;
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Fira Code', monospace;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #090909;
+    color: #EBEBEB;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #090909;
+    color: #EBEBEB;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #090909;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #222222;
+    border-radius: 2px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #333333;
+  }
+
+  ::selection {
+    background: rgba(77, 168, 218, 0.2);
+    color: #EBEBEB;
+  }
+}
+
+@layer utilities {
+  /* ─── Engineering Grid Background ─── */
+  .grid-bg {
+    background-color: #090909;
+    background-image:
+      /* Radial fade to hide the grid at edges */
+      radial-gradient(ellipse 80% 60% at 50% 0%, transparent 0%, #090909 100%),
+      /* Fine grid lines */
+      linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+    background-size: 100% 100%, 40px 40px, 40px 40px;
+  }
+
+  /* ─── Cursor Spotlight ─── */
+  .cursor-spotlight {
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    transition: opacity 0.3s;
+    background: radial-gradient(
+      600px circle at var(--cursor-x, 50%) var(--cursor-y, 50%),
+      rgba(77, 168, 218, 0.032) 0%,
+      transparent 60%
+    );
+  }
+
+  /* ─── Cards ─── */
+  .card {
+    background: #0f0f0f;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .card:hover {
+    border-color: rgba(255, 255, 255, 0.14);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  }
+
+  /* ─── Tags / Labels ─── */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    font-family: 'IBM Plex Mono', monospace;
+    color: #888888;
+    background: #161616;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    letter-spacing: 0.01em;
+  }
+
+  /* ─── Buttons ─── */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.25rem;
+    background: #4DA8DA;
+    color: #090909;
+    font-weight: 600;
+    font-size: 0.8rem;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+    cursor: pointer;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .btn-primary:hover {
+    background: #5eb9e8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(77, 168, 218, 0.25);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.25rem;
+    background: transparent;
+    color: #EBEBEB;
+    font-weight: 500;
+    font-size: 0.8rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+    cursor: pointer;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .btn-secondary:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.04);
+    transform: translateY(-1px);
+  }
+
+  /* ─── Section spacing ─── */
+  .section-padding {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  /* ─── Mono label above section titles ─── */
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: #4DA8DA;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  /* ─── Fade-up animation ─── */
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ─── Code syntax colors ─── */
+  .code-keyword   { color: #C792EA; }
+  .code-string    { color: #C3E88D; }
+  .code-variable  { color: #82AAFF; }
+  .code-property  { color: #F78C6C; }
+  .code-comment   { color: #444444; }
+  .code-bracket   { color: #89DDFF; }
+  .code-plain     { color: #EBEBEB; }
+}
