@@ -6,15 +6,21 @@
   --color-surface:      #EAD7C6;
   --color-border:       rgba(92, 64, 51, 0.2);
   --color-border-hover: rgba(92, 64, 51, 0.35);
-  --color-accent:       #18181B; /* Ink Black */
-  --color-accent-dim:   rgba(24, 24, 27, 0.08);
-  --color-text-primary: #18181B;
-  --color-text-muted:   #71717A;
-  --color-text-faint:   #A1A1AA;
+  --color-accent:       #2E160A;
+  --color-accent-dim:   rgba(46, 22, 10, 0.08);
+  --color-text-primary: #2E160A;
+  --color-text-muted:   #3E2D25;
+  --color-text-faint:   #6E5A50;
 
   /* Typography */
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'IBM Plex Mono', 'Fira Code', monospace;
+
+  /* Scale up font sizes slightly for readability */
+  --text-xs: 0.8rem;
+  --text-sm: 0.925rem;
+  --text-base: 1.05rem;
+  --text-lg: 1.15rem;
 }
 
 @layer base {
@@ -26,14 +32,12 @@
 
   html {
     scroll-behavior: smooth;
-    background-color: #DCC5B0;
-    color: #18181B;
   }
 
   body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     background-color: #DCC5B0;
-    color: #18181B;
+    color: #2E160A;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
@@ -54,8 +58,8 @@
   }
 
   ::selection {
-    background: rgba(24, 24, 27, 0.08);
-    color: #18181B;
+    background: rgba(46, 22, 10, 0.08);
+    color: #2E160A;
   }
 
   /* Global coffee brown border overrides */
@@ -65,20 +69,32 @@
   [class*="border-black/"] {
     border-color: rgba(92, 64, 51, 0.2) !important;
   }
+
+  /* Global hardcoded text color overrides for high readability */
+  .text-\[\#18181B\] { color: #2E160A !important; }
+  .text-\[\#71717A\] { color: #3E2D25 !important; }
+  .text-\[\#A1A1AA\] { color: #6E5A50 !important; }
 }
 
 @layer utilities {
   /* ─── Engineering Grid Background ─── */
   .grid-bg {
+    position: relative;
     background-color: #DCC5B0;
-    background-image:
-      /* Radial fade to hide the grid at edges */
-      radial-gradient(ellipse 80% 60% at 50% 0%, transparent 0%, #DCC5B0 100%),
-      /* Fine grid lines (Brown shade, more prominent) */
-      linear-gradient(rgba(92, 64, 51, 0.12) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(92, 64, 51, 0.12) 1px, transparent 1px);
-    background-size: 100% 100%, 40px 40px, 40px 40px;
   }
+  .grid-bg::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+      linear-gradient(rgba(92, 64, 51, 0.11) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(92, 64, 51, 0.11) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: grid-pulse 8s ease-in-out infinite;
+  }
+
 
   /* ─── Cursor Spotlight ─── */
   .cursor-spotlight {
@@ -94,18 +110,6 @@
     );
   }
 
-  /* ─── Cards ─── */
-  .card {
-    background: var(--color-surface);
-    border: 1px solid rgba(92, 64, 51, 0.2);
-    border-radius: 8px;
-    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  .card:hover {
-    border-color: rgba(92, 64, 51, 0.35);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(92, 64, 51, 0.06);
-  }
 
   /* Dark Terminal/Editor syntax overrides */
   .dark-code-window .code-keyword   { color: #E8985E; }  /* warm amber */
@@ -136,7 +140,7 @@
     align-items: center;
     gap: 0.4rem;
     padding: 0.6rem 1.25rem;
-    background: #18181B;
+    background: #2E160A;
     color: var(--color-surface);
     font-weight: 600;
     font-size: 0.8rem;
@@ -148,9 +152,9 @@
     letter-spacing: 0.01em;
   }
   .btn-primary:hover {
-    background: #27272A;
+    background: #452312;
     transform: translateY(-1px);
-    box-shadow: 0 4px 16px rgba(24, 24, 27, 0.15);
+    box-shadow: 0 4px 16px rgba(46, 22, 10, 0.15);
   }
 
   .btn-secondary {
@@ -159,35 +163,63 @@
     gap: 0.4rem;
     padding: 0.6rem 1.25rem;
     background: transparent;
-    color: #18181B;
+    color: #2E160A;
     font-weight: 500;
     font-size: 0.8rem;
     border-radius: 6px;
-    border: 1px solid rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(92, 64, 51, 0.2);
     transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
     cursor: pointer;
     text-decoration: none;
     letter-spacing: 0.01em;
   }
   .btn-secondary:hover {
-    border-color: rgba(0, 0, 0, 0.25);
-    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(92, 64, 51, 0.4);
+    background: rgba(92, 64, 51, 0.05);
     transform: translateY(-1px);
+  }
+
+  /* ─── Form input field ─── */
+  .input-field {
+    width: 100%;
+    padding: 0.625rem 0.875rem;
+    border-radius: 6px;
+    border: 1px solid rgba(92, 64, 51, 0.18);
+    background: var(--color-surface);
+    font-size: 0.875rem;
+    color: #2E160A;
+    font-family: 'Inter', system-ui, sans-serif;
+    box-shadow: 0 1px 2px rgba(46, 22, 10, 0.04);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+  }
+  .input-field::placeholder { color: #B8A89E; }
+  .input-field:focus {
+    border-color: rgba(26, 59, 139, 0.35);
+    box-shadow: 0 0 0 3px rgba(26, 59, 139, 0.08);
   }
 
   /* ─── Section spacing ─── */
   .section-padding {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .section-padding {
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
   }
 
   /* ─── Mono label above section titles ─── */
   .section-label {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.7rem;
-    color: #18181B;
+    color: #2E160A;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     margin-bottom: 0.75rem;
@@ -195,14 +227,15 @@
 
   /* ─── Fade-up animation ─── */
   @keyframes fade-up {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+
+  /* ─── Grid pulse animation ─── */
+  @keyframes grid-pulse {
+    0%, 100% { opacity: 0.8; }
+    50%       { opacity: 1; }
   }
 
   /* ─── Code syntax colors — GitHub Light theme ─── */
@@ -212,5 +245,5 @@
   .code-property  { color: #116329; }  /* green — object keys */
   .code-comment   { color: #A1A1AA; }  /* gray — comments */
   .code-bracket   { color: #1A3B8B; }  /* cobalt — brackets */
-  .code-plain     { color: #18181B; }  /* ink — default text */
+  .code-plain     { color: #2E160A; }  /* ink — default text */
 }

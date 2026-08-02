@@ -1,11 +1,23 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import SectionWrapper, { SectionLabel, SectionTitle, itemVariants } from './SectionWrapper'
 import { skills, skillCategories, currentlyLearning, type SkillCategory } from '@/data/skills'
+import TiltCard from './TiltCard'
 
 export default function Skills() {
   const [activeCategory, setActiveCategory] = useState<SkillCategory>('All')
-  const filtered = activeCategory === 'All' ? skills : skills.filter(s => s.category === activeCategory)
+
+  // Precompute counts once so the filter buttons don't re-filter on every render
+  const categoryCounts = useMemo(
+    () => new Map(skillCategories.map(cat => [cat, cat === 'All' ? skills.length : skills.filter(s => s.category === cat).length])),
+    []
+  )
+
+  // Recompute filtered list only when activeCategory changes
+  const filtered = useMemo(
+    () => activeCategory === 'All' ? skills : skills.filter(s => s.category === activeCategory),
+    [activeCategory]
+  )
 
   return (
     <SectionWrapper id="skills" className="border-t border-black/[0.05]">
@@ -17,7 +29,7 @@ export default function Skills() {
       {/* Category filter */}
       <motion.div variants={itemVariants} className="flex flex-wrap gap-2 mb-6 border-b border-black/[0.06] pb-3">
         {skillCategories.map(cat => {
-          const count = cat === 'All' ? skills.length : skills.filter(s => s.category === cat).length
+          const count = categoryCounts.get(cat) ?? 0
           const isActive = activeCategory === cat
           return (
             <button key={cat} onClick={() => setActiveCategory(cat)}
@@ -58,23 +70,27 @@ export default function Skills() {
       </motion.div>
 
       {/* Currently learning */}
-      <motion.div variants={itemVariants} className="rounded-lg border border-[#5C4033]/30 overflow-hidden bg-[#1B130E] max-w-md shadow-md">
-        <div className="px-3.5 py-1.5 flex items-center justify-between border-b border-[#5C4033]/20 bg-[#2A201B]">
-          <div className="flex gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#FF5F56]" />
-            <span className="w-1.5 h-1.5 rounded-full bg-[#FFBD2E]" />
-            <span className="w-1.5 h-1.5 rounded-full bg-[#27C93F]" />
+      <motion.div variants={itemVariants} className="w-full max-w-md">
+        <TiltCard glowColor="rgba(165, 194, 97, 0.08)">
+          <div className="rounded-lg border border-[#5C4033]/30 overflow-hidden bg-[#1B130E] shadow-md">
+            <div className="px-3.5 py-1.5 flex items-center justify-between border-b border-[#5C4033]/20 bg-[#2A201B]">
+              <div className="flex gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FF5F56]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FFBD2E]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#27C93F]" />
+              </div>
+              <span className="font-mono text-[9px] text-[#CDB39C]">learning.sh</span>
+            </div>
+            <div className="p-3 font-mono text-[11px] bg-[#1B130E] flex flex-wrap items-center gap-x-3 gap-y-1.5 text-left">
+              <span className="text-[#71717A] select-none">$ cat learning.txt</span>
+              {currentlyLearning.map(item => (
+                <span key={item} className="text-[#A5C261]">
+                  {item}
+                </span>
+              ))}
+            </div>
           </div>
-          <span className="font-mono text-[9px] text-[#CDB39C]">learning.sh</span>
-        </div>
-        <div className="p-3 font-mono text-[11px] bg-[#1B130E] flex flex-wrap items-center gap-x-3 gap-y-1.5 text-left">
-          <span className="text-[#71717A] select-none">$ cat learning.txt</span>
-          {currentlyLearning.map(item => (
-            <span key={item} className="text-[#A5C261]">
-              {item}
-            </span>
-          ))}
-        </div>
+        </TiltCard>
       </motion.div>
     </SectionWrapper>
   )

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import SectionWrapper, { SectionLabel, SectionTitle, itemVariants } from './SectionWrapper'
+import TiltCard from './TiltCard'
 
 const stats = [
   { label: 'GPA', value: '9.64', suffix: '/10' },
@@ -17,7 +18,7 @@ const highlights = [
 export default function About() {
   return (
     <SectionWrapper id="about">
-      <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 lg:gap-24 items-start">
         {/* Left */}
         <div>
           <SectionLabel>Who I Am</SectionLabel>
@@ -61,29 +62,33 @@ export default function About() {
           </motion.div>
 
           {/* About JSON card */}
-          <motion.div variants={itemVariants} className="rounded-lg border border-[#5C4033]/30 overflow-hidden bg-[#1B130E] shadow-lg">
-            <div className="px-4 py-2.5 border-b border-[#5C4033]/20 bg-[#2A201B] flex items-center justify-between">
-              <div className="flex gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-[#FF5F56]" />
-                <span className="w-2 h-2 rounded-full bg-[#FFBD2E]" />
-                <span className="w-2 h-2 rounded-full bg-[#27C93F]" />
-              </div>
-              <span className="font-mono text-[10px] text-[#CDB39C]">~/about.json</span>
-            </div>
-            <div className="p-4 font-mono text-[12px] leading-6 bg-[#1B130E] text-[#EAD7C6]">
-              {[
-                ['location', '"Mumbai, India"'],
-                ['available', 'true'],
-                ['languages', '["C++", "JS", "TS", "Python"]'],
-                ['domains', '["Web Development", "AI Integrations", "DSA"]'],
-              ].map(([k, v]) => (
-                <div key={k} className="flex gap-2">
-                  <span className="text-[#E8985E]">{k}</span>
-                  <span className="text-[#CDB39C]">: </span>
-                  <span className={v === 'true' ? 'text-[#6C9EF8]' : 'text-[#A5C261]'}>{v}</span>
+          <motion.div variants={itemVariants}>
+            <TiltCard glowColor="rgba(232, 152, 94, 0.08)">
+              <div className="rounded-lg border border-[#5C4033]/30 overflow-hidden bg-[#1B130E] shadow-lg">
+                <div className="px-4 py-2.5 border-b border-[#5C4033]/20 bg-[#2A201B] flex items-center justify-between">
+                  <div className="flex gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-[#FF5F56]" />
+                    <span className="w-2 h-2 rounded-full bg-[#FFBD2E]" />
+                    <span className="w-2 h-2 rounded-full bg-[#27C93F]" />
+                  </div>
+                  <span className="font-mono text-[10px] text-[#CDB39C]">~/about.json</span>
                 </div>
-              ))}
-            </div>
+                <div className="p-4 font-mono text-[12px] leading-6 bg-[#1B130E] text-[#EAD7C6]">
+                  {[
+                    ['location', '"Mumbai, India"'],
+                    ['available', 'true'],
+                    ['languages', '["C++", "JS", "TS", "Python"]'],
+                    ['domains', '["Web Development", "AI Integrations", "DSA"]'],
+                  ].map(([k, v]) => (
+                    <div key={k} className="flex gap-2">
+                      <span className="text-[#E8985E]">{k}</span>
+                      <span className="text-[#CDB39C]">: </span>
+                      <span className={v === 'true' ? 'text-[#6C9EF8]' : 'text-[#A5C261]'}>{v}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </TiltCard>
           </motion.div>
         </div>
       </div>

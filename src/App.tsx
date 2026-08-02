@@ -8,6 +8,7 @@ import Projects from './components/Projects'
 import Experience from './components/Experience'
 import Resume from './components/Resume'
 import Footer from './components/Footer'
+import BackgroundCanvas from './components/BackgroundCanvas'
 
 export default function App() {
   const spotlightRef = useRef<HTMLDivElement>(null)
@@ -22,7 +23,10 @@ export default function App() {
   }, [])
 
   return (
-    <div className="relative min-h-screen grid-bg">
+    <div className="relative min-h-screen grid-bg overflow-x-hidden">
+      {/* Interactive Constellation Network Canvas */}
+      <BackgroundCanvas />
+
       {/* Cursor spotlight overlay */}
       <div ref={spotlightRef} className="cursor-spotlight" aria-hidden="true" />
 

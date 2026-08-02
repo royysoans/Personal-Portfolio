@@ -1,4 +1,4 @@
-export type SkillCategory = 'All' | 'Languages' | 'Frontend' | 'Backend' | 'AI & LLM' | 'Tools';
+export type SkillCategory = 'All' | 'Languages' | 'Frontend' | 'Backend' | 'Tools';
 
 export interface Skill {
   name: string;
@@ -32,22 +32,14 @@ export const skills: Skill[] = [
   { name: 'PostgreSQL', category: 'Backend', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', description: 'Relational Database Schema' },
   { name: 'REST APIs', category: 'Backend', description: 'Scalable Endpoint Design' },
 
-  // AI & LLM
-  { name: 'Gemini API', category: 'AI & LLM', description: 'Multimodal LLM Integration' },
-  { name: 'Groq API', category: 'AI & LLM', description: 'Ultra-low Latency Inference' },
-  { name: 'Prompt Engineering', category: 'AI & LLM', description: 'Structured JSON & Context Tuning' },
-  { name: 'Adaptive AI Systems', category: 'AI & LLM', description: 'Dynamic Content Generation' },
 
   // Tools
   { name: 'Git', category: 'Tools', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg', description: 'Version Control' },
   { name: 'GitHub', category: 'Tools', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg', description: 'Collaboration & Actions' },
   { name: 'Vercel', category: 'Tools', description: 'Edge Deployment & CI/CD' },
-  { name: 'VS Code', category: 'Tools', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg', description: 'Primary IDE Setup' },
-  { name: 'npm', category: 'Tools', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg', description: 'Package Management' },
-  { name: 'WCAG Standards', category: 'Tools', description: 'Web Accessibility Compliance' },
 ];
 
-export const skillCategories: SkillCategory[] = ['All', 'Languages', 'Frontend', 'Backend', 'AI & LLM', 'Tools'];
+export const skillCategories: SkillCategory[] = ['All', 'Languages', 'Frontend', 'Backend', 'Tools'];
 
 export const currentlyLearning = [
   'Data Structures & Algorithms',

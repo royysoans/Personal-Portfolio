@@ -17,7 +17,7 @@ export default function Experience() {
         <SectionTitle>Education & Experience</SectionTitle>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-12 items-start max-w-5xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-start max-w-5xl mx-auto">
         {/* Left: Education */}
         <motion.div variants={itemVariants} className="space-y-6">
           <h3 className="text-base font-semibold text-[#18181B] text-left mb-4">Academic Journey</h3>
